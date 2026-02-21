@@ -27,7 +27,7 @@ const UserSchema = new Schema<IUser>(
         },
         password: {
             type: String,
-            minlength: 6,
+            minlength: 8,
             select: false,
         },
         googleId: {
