@@ -7,21 +7,23 @@ import passport from "passport";
 import cors from "cors";
 import AuthRoutes from "./src/routes/auth.route";
 import { errorHandler } from "./src/utils/errorHandler";
+import UserRoutes from "./src/routes/user.route";
 
 const app = express();
 
 app.use(passport.initialize());
 
 app.use(cors({
-  origin: process.env.FRONTEND_URL, // Replace with your frontend URL
-  credentials: true
+    origin: process.env.FRONTEND_URL, // Replace with your frontend URL
+    credentials: true
 }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.use("/api/auth",AuthRoutes);
+app.use("/api/auth", AuthRoutes);
+app.use("/api/user", UserRoutes);
 
 
 app.use(errorHandler);

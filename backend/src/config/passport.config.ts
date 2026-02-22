@@ -1,6 +1,7 @@
 import passport from "passport";
 import { Strategy as GoogleStrategy, type Profile } from "passport-google-oauth20";
 import UserModel, { type IUser } from "../models/user.model";
+import { findUserById } from "../dao/user.dao";
 
 const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:3000";
 
@@ -58,7 +59,7 @@ passport.serializeUser((user: Express.User, done) => {
 
 passport.deserializeUser(async (id: string, done) => {
     try {
-        const user = await UserModel.findById(id);
+        const user = await findUserById(id);
         done(null, user);
     } catch (err) {
         done(err, null);
