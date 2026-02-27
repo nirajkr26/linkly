@@ -42,3 +42,16 @@ export const updateUrlSchema = z.object({
 
 // Extract types for use in controllers
 export type UpdateUrlInput = z.infer<typeof updateUrlSchema>;
+
+
+export const createUrlSchema = z.object({
+  body: z.object({
+    url: z.string().url("Please provide a valid destination URL (http/https)"),
+    slug: z.string()
+      .min(3, "Custom slug must be at least 3 characters")
+      .max(20, "Custom slug cannot exceed 20 characters")
+      .optional()
+      .nullable(),
+    activeFrom: z.string().datetime().optional().nullable()
+  })
+});

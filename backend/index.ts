@@ -8,6 +8,8 @@ import cors from "cors";
 import AuthRoutes from "./src/routes/auth.route";
 import { errorHandler } from "./src/utils/errorHandler";
 import UserRoutes from "./src/routes/user.route";
+import ShortUrlRouter from "./src/routes/shorturl.route";
+import { redirectFromShortUrlController } from "./src/controllers/shorturl.controllers";
 
 const app = express();
 
@@ -24,7 +26,10 @@ app.use(cookieParser());
 
 app.use("/api/auth", AuthRoutes);
 app.use("/api/user", UserRoutes);
+app.use("/api/create",ShortUrlRouter);
 
+// Get - redirect short url
+app.get("/:id", redirectFromShortUrlController);
 
 app.use(errorHandler);
 
