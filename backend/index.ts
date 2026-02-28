@@ -10,6 +10,7 @@ import { errorHandler } from "./src/utils/errorHandler";
 import UserRoutes from "./src/routes/user.route";
 import ShortUrlRouter from "./src/routes/shorturl.route";
 import { redirectFromShortUrlController } from "./src/controllers/shorturl.controllers";
+import AnalyticsRouter from "./src/routes/analytics.route";
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use(cookieParser());
 app.use("/api/auth", AuthRoutes);
 app.use("/api/user", UserRoutes);
 app.use("/api/create",ShortUrlRouter);
+app.use("/api/analytics", AnalyticsRouter);
 
 // Get - redirect short url
 app.get("/:id", redirectFromShortUrlController);

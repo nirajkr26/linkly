@@ -1,8 +1,8 @@
-import {type Request,type Response } from "express";
+import { type Request, type Response } from "express";
 import { getShortUrlDoc, incrementClicks } from "../dao/shorturl.dao.js";
-import { 
-  createShortUrlWithoutUserService, 
-  createShortUrlWithUserService 
+import {
+    createShortUrlWithoutUserService,
+    createShortUrlWithUserService
 } from "../services/shorturl.services.js";
 import wrapAsync from "../utils/tryCatchWrapper";
 import argon2 from "argon2";
