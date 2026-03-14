@@ -8,7 +8,7 @@ import { type AppDispatch } from '../store/store'; // Adjust path to your store 
 // --- Interfaces ---
 
 interface User {
-  id: string;
+  _id: string;
   name: string;
   email: string;
   avatar?: string;

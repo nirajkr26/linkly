@@ -2,7 +2,7 @@ import { redirect } from "@tanstack/react-router";
 import { QueryClient } from "@tanstack/react-query";
 import { getCurrentUser, type ApiResponse, type User } from "../api/User.api";
 import { login } from "../store/slice/authSlice";
-import { AppStore } from "../store/store"; // Assuming you export the store type
+import { type AppStore } from "../store/store"; // Assuming you export the store type
 
 /**
  * Interface for TanStack Router context
@@ -40,6 +40,7 @@ export const checkAuth = async ({ context }: { context: RouteContext }): Promise
         // Throwing the redirect is the standard TanStack Router way to guard routes
         throw redirect({
             to: "/auth",
+            search: { mode: 'login' },
         });
     }
 };

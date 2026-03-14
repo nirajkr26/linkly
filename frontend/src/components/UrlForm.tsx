@@ -22,7 +22,7 @@ interface CreateUrlResponse {
 }
 
 const UrlForm: React.FC<UrlFormProps> = ({ onSuccess }) => {
-  const [url, setUrl] = useState<string>("https://www.google.com");
+  const [url, setUrl] = useState<string>("");
   const [customSlug, setCustomSlug] = useState<string>("");
   const [shortUrl, setShortUrl] = useState<string>("");
   const [qrCode, setQrCode] = useState<string>("");
@@ -87,7 +87,8 @@ const UrlForm: React.FC<UrlFormProps> = ({ onSuccess }) => {
         payload.slug = customSlug.trim();
       }
       if (activeFrom) {
-        payload.activeFrom = activeFrom;
+        const date = new Date(activeFrom).toISOString();
+        payload.activeFrom = date;
       }
 
       const { data } = await axios.post<CreateUrlResponse | string>(
@@ -184,6 +185,7 @@ const UrlForm: React.FC<UrlFormProps> = ({ onSuccess }) => {
                   <input
                     type="datetime-local"
                     value={activeFrom}
+                    min={new Date().toISOString().slice(0, 16)}
                     onChange={(e) => setActiveFrom(e.target.value)}
                     className="w-full px-4 py-3 bg-white border-2 border-orange-100 rounded-xl outline-none focus:border-orange-500 transition-all text-sm"
                   />
