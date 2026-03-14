@@ -42,11 +42,11 @@ const LinkNotActive: React.FC = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-slate-900 p-4">
-            <div className="w-full max-w-md bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 shadow-2xl shadow-purple-900/20 animate-in fade-in zoom-in-95 duration-300">
+            <div className="w-full max-w-md bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 shadow-2xl shadow-red-900/20 animate-in fade-in zoom-in-95 duration-300">
                 <div className="text-center mb-6">
                     {/* Icon */}
-                    <div className="w-16 h-16 mx-auto mb-4 bg-violet-500/20 rounded-2xl flex items-center justify-center border border-violet-500/30">
-                        <svg className="w-8 h-8 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-16 h-16 mx-auto mb-4 bg-orange-500/20 rounded-2xl flex items-center justify-center border border-orange-500/30">
+                        <svg className="w-8 h-8 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     </div>
@@ -66,9 +66,9 @@ const LinkNotActive: React.FC = () => {
                 {activationDate && (
                     <div className="space-y-2 mb-6">
                         <label className="text-white/80 text-sm font-medium ml-1">Activation Date</label>
-                        <div className="w-full px-5 py-4 bg-white/5 border border-violet-500/20 rounded-xl hover:border-violet-500/30 transition-colors">
+                        <div className="w-full px-5 py-4 bg-white/5 border border-orange-500/20 rounded-xl hover:border-orange-500/30 transition-colors">
                             <div className="flex items-center gap-3 text-white">
-                                <svg className="w-5 h-5 text-violet-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-5 h-5 text-orange-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v12a2 2 0 002 2z" />
                                 </svg>
                                 <span className="text-base font-medium">
@@ -86,12 +86,12 @@ const LinkNotActive: React.FC = () => {
                 )}
 
                 {/* Info Message */}
-                <div className="p-4 bg-violet-500/5 border border-violet-500/20 rounded-xl">
+                <div className="p-4 bg-orange-500/5 border border-orange-500/20 rounded-xl">
                     <div className="flex items-start gap-3">
-                        <svg className="w-5 h-5 text-violet-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5 text-orange-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
-                        <p className="text-violet-200 text-sm leading-relaxed">
+                        <p className="text-orange-200 text-sm leading-relaxed">
                             This link will become accessible after the scheduled activation time. Please check back later.
                         </p>
                     </div>

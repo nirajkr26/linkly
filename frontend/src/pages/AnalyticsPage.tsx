@@ -62,8 +62,8 @@ const AnalyticsPage: React.FC = () => {
             if (!isAuthenticated) return;
 
             try {
-                const response = await axiosInstance.get<ApiResponse>(`/api/analytics/${slug}`);
-                setData(response.data);
+                const response = await axiosInstance.get<{ isSuccess: boolean; data: ApiResponse }>(`/api/analytics/${slug}`);
+                setData(response.data.data);
             } catch (err: any) {
                 console.error("Error fetching analytics:", err);
                 if (err.response?.status === 403) {
@@ -92,11 +92,11 @@ const AnalyticsPage: React.FC = () => {
     if (error) {
         return (
             <div className="min-h-screen bg-gray-900 flex flex-col items-center justify-center text-white">
-                <h2 className="text-2xl font-bold mb-4 text-red-500">Error</h2>
+                <h2 className="text-2xl font-bold mb-4 text-orange-500">Error</h2>
                 <p className="text-gray-400 mb-6">{error}</p>
                 <button
                     onClick={() => navigate({ to: '/dashboard' })}
-                    className="px-6 py-2 bg-violet-600 rounded-lg hover:bg-violet-700 transition font-medium"
+                    className="px-6 py-2 bg-orange-600 rounded-lg hover:bg-orange-700 transition font-medium"
                 >
                     Back to Dashboard
                 </button>
@@ -124,9 +124,9 @@ const AnalyticsPage: React.FC = () => {
         : [{ name: 'No Data', value: 1 }];
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-950 to-indigo-950 p-6 md:p-12 font-sans relative overflow-hidden text-white">
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-red-950 to-amber-950 pt-20 px-6 pb-6 md:pt-24 md:px-12 md:pb-12 font-sans relative overflow-hidden text-white">
             <div className="absolute inset-0 opacity-20 pointer-events-none">
-                <div className="absolute top-20 left-20 w-96 h-96 bg-violet-500 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute top-20 left-20 w-96 h-96 bg-orange-500 rounded-full blur-3xl animate-pulse"></div>
                 <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-500 rounded-full blur-3xl animate-pulse delay-1000"></div>
             </div>
 
@@ -141,10 +141,10 @@ const AnalyticsPage: React.FC = () => {
 
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
                     <div>
-                        <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400 mb-2">
+                        <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-fuchsia-400 mb-2">
                             Analytics Dashboard
                         </h1>
-                        <div className="flex items-center gap-2 text-violet-300/80">
+                        <div className="flex items-center gap-2 text-orange-300/80">
                             <Globe className="w-4 h-4" />
                             <span className="truncate max-w-md">{link.originalUrl}</span>
                         </div>
@@ -158,7 +158,7 @@ const AnalyticsPage: React.FC = () => {
                                 title="Total Clicks"
                                 value={analytics.totalClicks}
                                 icon={MousePointer2}
-                                colorClass="bg-violet-500"
+                                colorClass="bg-orange-500"
                             />
                             <StatCard
                                 title="Unique Users"

@@ -40,8 +40,10 @@ const EditExpirationModal: React.FC<EditExpirationModalProps> = ({
     e.preventDefault();
     setIsLoading(true);
     try {
+      const isoDate = new Date(expiresAt).toISOString();
+
       const payload = {
-        expiresAt: expiresAt || null, // Send null to remove expiration
+        expiresAt: isoDate || null, // Send null to remove expiration
         isExpired: false // Reset status when updating
       };
 
@@ -95,7 +97,7 @@ const EditExpirationModal: React.FC<EditExpirationModalProps> = ({
                 value={expiresAt}
                 onChange={(e) => setExpiresAt(e.target.value)}
                 min={new Date().toISOString().slice(0, 16)}
-                className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl outline-none focus:border-violet-500 focus:bg-white transition-all duration-200"
+                className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl outline-none focus:border-orange-500 focus:bg-white transition-all duration-200"
               />
               <p className="text-xs text-gray-500">
                 The link will stop working after this date.
@@ -108,7 +110,7 @@ const EditExpirationModal: React.FC<EditExpirationModalProps> = ({
                   type="button"
                   onClick={handleRemove}
                   disabled={isLoading}
-                  className="flex-1 py-3 px-4 bg-red-50 text-red-600 font-bold rounded-xl hover:bg-red-100 transition-colors disabled:opacity-50"
+                  className="flex-1 py-3 px-4 bg-orange-50 text-orange-600 font-bold rounded-xl hover:bg-orange-100 transition-colors disabled:opacity-50"
                 >
                   Remove
                 </button>
@@ -116,7 +118,7 @@ const EditExpirationModal: React.FC<EditExpirationModalProps> = ({
               <button
                 type="submit"
                 disabled={isLoading}
-                className="flex-1 py-3 px-4 bg-violet-600 text-white font-bold rounded-xl hover:bg-violet-700 shadow-lg hover:shadow-violet-500/30 transition-all duration-200 disabled:opacity-50 flex justify-center items-center"
+                className="flex-1 py-3 px-4 bg-orange-600 text-white font-bold rounded-xl hover:bg-orange-700 shadow-lg hover:shadow-orange-500/30 transition-all duration-200 disabled:opacity-50 flex justify-center items-center"
               >
                 {isLoading ? <DotLoader size={20} color="#ffffff" /> : 'Save Changes'}
               </button>

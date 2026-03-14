@@ -55,7 +55,7 @@ const NavBar: React.FC = () => {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-violet-950/90 backdrop-blur-md py-4' : 'bg-transparent py-6'
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-orange-950/90 backdrop-blur-md py-4' : 'bg-transparent py-6'
       }`}>
       <div className="max-w-15xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between">
@@ -94,7 +94,7 @@ const NavBar: React.FC = () => {
                         className="w-8 h-8 rounded-full object-cover"
                       />
                     ) : (
-                      <div className="w-8 h-8 bg-gradient-to-br from-violet-600 to-indigo-600 rounded-full flex items-center justify-center text-white font-semibold text-sm shadow-inner">
+                      <div className="w-8 h-8 bg-gradient-to-br from-orange-600 to-amber-600 rounded-full flex items-center justify-center text-white font-semibold text-sm shadow-inner">
                         {userData?.name?.charAt(0).toUpperCase() || 'U'}
                       </div>
                     )}
@@ -112,8 +112,8 @@ const NavBar: React.FC = () => {
                   </button>
 
                   {profileDropdownOpen && (
-                    <div className="absolute right-0 mt-2 w-64 bg-violet-100/95 backdrop-blur-lg rounded-xl shadow-xl border border-violet-200/50 overflow-hidden origin-top-right">
-                      <div className="p-4 border-b border-violet-200/50 flex items-center gap-3">
+                    <div className="absolute right-0 mt-2 w-64 bg-orange-100/95 backdrop-blur-lg rounded-xl shadow-xl border border-orange-200/50 overflow-hidden origin-top-right">
+                      <div className="p-4 border-b border-orange-200/50 flex items-center gap-3">
                         <div className="flex-1 min-w-0">
                           <p className="text-sm font-medium text-gray-900 truncate">
                             {userData?.name || 'User'}
@@ -126,7 +126,7 @@ const NavBar: React.FC = () => {
                       <div className="p-1">
                         <button
                           onClick={handleLogout}
-                          className="w-full flex items-center gap-2 px-3 py-2 text-sm text-violet-600 hover:bg-violet-200/50 rounded-lg transition-colors font-medium"
+                          className="w-full flex items-center gap-2 px-3 py-2 text-sm text-orange-600 hover:bg-orange-200/50 rounded-lg transition-colors font-medium"
                         >
                           Sign Out
                         </button>
@@ -147,7 +147,7 @@ const NavBar: React.FC = () => {
                 <Link
                   to="/auth"
                   search={{ mode: 'signup' }}
-                  className="px-5 py-2.5 text-sm font-semibold text-violet-900 bg-violet-100 hover:bg-violet-200 rounded-lg transition-all transform hover:scale-105 shadow-lg"
+                  className="px-5 py-2.5 text-sm font-semibold text-orange-900 bg-orange-100 hover:bg-orange-200 rounded-lg transition-all transform hover:scale-105 shadow-lg"
                 >
                   Get Started
                 </Link>

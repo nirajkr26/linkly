@@ -37,7 +37,7 @@ const LinkInfoCard: React.FC<LinkInfoCardProps> = ({ link }) => {
   return (
     <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 shadow-xl h-full">
       <h3 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
-        <ExternalLink className="w-5 h-5 text-violet-400" />
+        <ExternalLink className="w-5 h-5 text-orange-400" />
         Link Details
       </h3>
 
@@ -47,7 +47,7 @@ const LinkInfoCard: React.FC<LinkInfoCardProps> = ({ link }) => {
           <div>
             <label className="text-xs text-gray-400 uppercase tracking-wider mb-1 block">Short Link</label>
             <div className="flex items-center gap-2 bg-black/20 p-3 rounded-lg border border-white/5 group relative">
-              <span className="text-violet-300 font-mono text-sm truncate flex-1">
+              <span className="text-orange-300 font-mono text-sm truncate flex-1">
                 {fullShortUrl}
               </span>
               <button
@@ -78,8 +78,8 @@ const LinkInfoCard: React.FC<LinkInfoCardProps> = ({ link }) => {
 
           {/* Password Protection */}
           <div className={`flex items-center gap-3 p-3 rounded-lg border ${link.isPasswordProtected
-              ? 'bg-amber-500/10 border-amber-500/20 text-amber-200'
-              : 'bg-white/5 border-white/5 text-gray-400'
+            ? 'bg-amber-500/10 border-amber-500/20 text-amber-200'
+            : 'bg-white/5 border-white/5 text-gray-400'
             }`}>
             <Lock className={`w-5 h-5 ${link.isPasswordProtected ? 'text-amber-400' : 'text-gray-500'}`} />
             <div className="flex-1">
@@ -92,10 +92,10 @@ const LinkInfoCard: React.FC<LinkInfoCardProps> = ({ link }) => {
           {/* Expiration Status */}
           {link.expiresAt && (
             <div className={`flex items-center gap-3 p-3 rounded-lg border ${isExpired
-                ? 'bg-red-500/10 border-red-500/20 text-red-200'
-                : 'bg-emerald-500/10 border-emerald-500/20 text-emerald-200'
+              ? 'bg-orange-500/10 border-orange-500/20 text-orange-200'
+              : 'bg-emerald-500/10 border-emerald-500/20 text-emerald-200'
               }`}>
-              <AlertCircle className={`w-5 h-5 ${isExpired ? 'text-red-400' : 'text-emerald-400'}`} />
+              <AlertCircle className={`w-5 h-5 ${isExpired ? 'text-orange-400' : 'text-emerald-400'}`} />
               <div className="flex-1">
                 <p className="text-sm font-medium">{isExpired ? 'Expired' : 'Active'}</p>
                 <p className="text-xs opacity-70">
@@ -110,8 +110,8 @@ const LinkInfoCard: React.FC<LinkInfoCardProps> = ({ link }) => {
           {/* Scheduled Status */}
           {link.activeFrom && (
             <div className={`flex items-center gap-3 p-3 rounded-lg border ${isScheduled
-                ? 'bg-blue-500/10 border-blue-500/20 text-blue-200'
-                : 'bg-white/5 border-white/5 text-gray-400'
+              ? 'bg-blue-500/10 border-blue-500/20 text-blue-200'
+              : 'bg-white/5 border-white/5 text-gray-400'
               }`}>
               <Clock className={`w-5 h-5 ${isScheduled ? 'text-blue-400' : 'text-gray-500'}`} />
               <div className="flex-1">

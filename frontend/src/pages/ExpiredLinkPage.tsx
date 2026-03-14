@@ -2,25 +2,25 @@ import React from 'react';
 import { useNavigate, useSearch } from '@tanstack/react-router';
 
 // 1. Define the expected search parameters
-interface ExpiredLinkSearch {
+interface expiredLinkSearch {
     expiredAt?: string;
 }
 
-const ExpiredLinkPage: React.FC = () => {
+const expiredLinkPage: React.FC = () => {
     const navigate = useNavigate();
 
     // 2. Use TanStack's useSearch for type-safe parameter access
     // Note: 'from' should match the route path defined in your route tree
-    const search = useSearch({ from: '/link-expired' }) as ExpiredLinkSearch;
+    const search = useSearch({ from: '/link-expired' }) as expiredLinkSearch;
     const expiredAt = search.expiredAt;
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-slate-900 p-4">
-            <div className="w-full max-w-md bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 shadow-2xl shadow-purple-900/20 animate-in fade-in zoom-in-95 duration-300">
+            <div className="w-full max-w-md bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 shadow-2xl shadow-red-900/20 animate-in fade-in zoom-in-95 duration-300">
                 <div className="text-center mb-6">
                     {/* Icon */}
-                    <div className="w-16 h-16 mx-auto mb-4 bg-red-500/20 rounded-2xl flex items-center justify-center border border-red-500/30">
-                        <svg className="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-16 h-16 mx-auto mb-4 bg-orange-500/20 rounded-2xl flex items-center justify-center border border-orange-500/30">
+                        <svg className="w-8 h-8 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     </div>
@@ -44,12 +44,12 @@ const ExpiredLinkPage: React.FC = () => {
                 </div>
 
                 {/* Info Message */}
-                <div className="p-4 bg-red-500/5 border border-red-500/20 rounded-xl">
+                <div className="p-4 bg-orange-500/5 border border-orange-500/20 rounded-xl">
                     <div className="flex items-start gap-3">
-                        <svg className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5 text-orange-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
-                        <p className="text-red-200 text-sm leading-relaxed">
+                        <p className="text-orange-200 text-sm leading-relaxed">
                             This link has expired and is no longer accessible. If you believe this is an error, please contact the person who shared this link with you.
                         </p>
                     </div>
@@ -67,4 +67,4 @@ const ExpiredLinkPage: React.FC = () => {
     );
 };
 
-export default ExpiredLinkPage;
+export default expiredLinkPage;

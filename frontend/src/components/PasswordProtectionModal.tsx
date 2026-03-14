@@ -97,7 +97,7 @@ const PasswordProtectionModal: React.FC<PasswordProtectionModalProps> = ({
               <button
                 type="button"
                 onClick={() => setIsLinkPassword(!isLinkPassword)}
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 ${isLinkPassword ? 'bg-violet-600' : 'bg-gray-200'
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 ${isLinkPassword ? 'bg-orange-600' : 'bg-gray-200'
                   }`}
               >
                 <span
@@ -115,7 +115,7 @@ const PasswordProtectionModal: React.FC<PasswordProtectionModalProps> = ({
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder={url.isLinkPassword ? "Enter new password to change" : "Enter password"}
-                  className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl outline-none focus:border-violet-500 focus:bg-white transition-all duration-200"
+                  className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl outline-none focus:border-orange-500 focus:bg-white transition-all duration-200"
                 />
                 <p className="text-xs text-gray-500">
                   Visitors will need this password to access the link.
@@ -127,7 +127,7 @@ const PasswordProtectionModal: React.FC<PasswordProtectionModalProps> = ({
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-3 px-4 bg-violet-600 text-white font-bold rounded-xl hover:bg-violet-700 shadow-lg hover:shadow-violet-500/30 transition-all duration-200 disabled:opacity-50 flex justify-center items-center"
+                className="w-full py-3 px-4 bg-orange-600 text-white font-bold rounded-xl hover:bg-orange-700 shadow-lg hover:shadow-orange-500/30 transition-all duration-200 disabled:opacity-50 flex justify-center items-center"
               >
                 {isLoading ? <DotLoader size={20} color="#ffffff" /> : 'Save Changes'}
               </button>

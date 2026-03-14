@@ -47,10 +47,10 @@ const FAQ: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-gray-900 border-t border-purple-700 relative overflow-hidden">
+    <section className="py-20 bg-gray-900 border-t border-red-700 relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
-        <div className="absolute top-20 left-20 w-96 h-96 bg-violet-600/50 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-20 left-20 w-96 h-96 bg-orange-600/50 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-700/50 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
 
@@ -59,7 +59,7 @@ const FAQ: React.FC = () => {
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full border border-gray-700 bg-gray-800/50 backdrop-blur-sm mb-6">
             <span className="text-sm font-medium text-gray-300">
-              <span className="w-2 h-2 rounded-full bg-violet-500 inline-block mr-2 animate-pulse"></span>
+              <span className="w-2 h-2 rounded-full bg-orange-500 inline-block mr-2 animate-pulse"></span>
               FAQ
             </span>
           </div>
@@ -74,21 +74,21 @@ const FAQ: React.FC = () => {
             <div
               key={index}
               className={`group rounded-2xl border transition-all duration-500 ease-out ${openIndex === index
-                  ? 'bg-gradient-to-br from-gray-800/90 to-gray-800/70 border-violet-500/50 shadow-2xl shadow-violet-500/20'
-                  : 'bg-gray-800/40 border-gray-700 hover:border-violet-500/30 hover:bg-gray-800/60'
+                ? 'bg-gradient-to-br from-gray-800/90 to-gray-800/70 border-orange-500/50 shadow-2xl shadow-orange-500/20'
+                : 'bg-gray-800/40 border-gray-700 hover:border-orange-500/30 hover:bg-gray-800/60'
                 }`}
             >
               <button
                 onClick={() => handleToggle(index)}
                 className="w-full text-left px-6 py-5 flex items-center justify-between gap-4"
               >
-                <span className={`text-lg font-semibold transition-colors duration-300 ${openIndex === index ? 'text-violet-300' : 'text-gray-200 group-hover:text-white'
+                <span className={`text-lg font-semibold transition-colors duration-300 ${openIndex === index ? 'text-orange-300' : 'text-gray-200 group-hover:text-white'
                   }`}>
                   {faq.question}
                 </span>
                 <span className={`flex-shrink-0 w-9 h-9 rounded-full border-2 flex items-center justify-center transition-all duration-500 ease-out ${openIndex === index
-                    ? 'bg-violet-500 border-violet-400 rotate-180 scale-110'
-                    : 'bg-gray-700/50 border-gray-600 group-hover:border-violet-400/50'
+                  ? 'bg-orange-500 border-orange-400 rotate-180 scale-110'
+                  : 'bg-gray-700/50 border-gray-600 group-hover:border-orange-400/50'
                   }`}>
                   <svg
                     className={`w-5 h-5 transition-all duration-300 ${openIndex === index ? 'text-white' : 'text-gray-400'}`}
@@ -114,7 +114,7 @@ const FAQ: React.FC = () => {
                 <div className="px-6 pb-6 pt-2">
                   <div className={`text-gray-300 leading-relaxed transition-all duration-300 ${openIndex === index ? 'translate-y-0' : '-translate-y-2'
                     }`}>
-                    <div className="pl-4 border-l-2 border-violet-500/30">
+                    <div className="pl-4 border-l-2 border-orange-500/30">
                       {faq.answer}
                     </div>
                   </div>

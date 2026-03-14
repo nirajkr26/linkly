@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer, {type  AuthState } from './slice/authSlice';
+import authReducer, { type AuthState } from './slice/authSlice';
 
 /**
  * Interface for the persisted state structure

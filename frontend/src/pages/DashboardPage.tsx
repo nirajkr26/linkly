@@ -70,12 +70,12 @@ const DashboardPage: React.FC = () => {
   }, [user, fullGreeting.length]);
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-indigo-950 via-purple-950 to-gray-900 relative overflow-hidden">
+    <div className="min-h-screen bg-linear-to-br from-amber-950 via-red-950 to-gray-900 relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-20 left-20 w-96 h-96 bg-violet-500 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-20 left-20 w-96 h-96 bg-orange-500 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-500 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500 rounded-full blur-3xl animate-pulse delay-500"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-red-500 rounded-full blur-3xl animate-pulse delay-500"></div>
       </div>
 
       <div className="relative z-10 pt-24 pb-20 px-4">
@@ -85,7 +85,7 @@ const DashboardPage: React.FC = () => {
             {/* Left Side - Motivational Message */}
             <div className="space-y-8">
               <h1 className="text-5xl lg:text-6xl font-extrabold text-white leading-tight min-h-[1.2em]">
-                <span className="bg-clip-text text-transparent bg-linear-to-r from-violet-400 via-purple-400 to-indigo-400">
+                <span className="bg-clip-text text-transparent bg-linear-to-r from-orange-400 via-red-400 to-amber-400">
                   {fullGreeting.slice(0, typingIndex)}
                   <span className="opacity-0">{fullGreeting.slice(typingIndex)}</span>
                 </span>
@@ -96,10 +96,10 @@ const DashboardPage: React.FC = () => {
 
               {/* Quick Stats */}
               <div className="grid grid-cols-2 gap-4 pt-4">
-                <div className="backdrop-blur-xl bg-gradient-to-br from-violet-900/30 to-purple-900/20 border border-violet-500/30 rounded-2xl p-5 hover:border-violet-400/50 transition-all duration-300 group">
+                <div className="backdrop-blur-xl bg-gradient-to-br from-orange-900/30 to-red-900/20 border border-orange-500/30 rounded-2xl p-5 hover:border-orange-400/50 transition-all duration-300 group">
                   <div className="flex items-center gap-2 mb-2">
-                    <div className="w-8 h-8 bg-violet-500/20 rounded-lg flex items-center justify-center">
-                      <svg className="w-4 h-4 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center">
+                      <svg className="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                       </svg>
                     </div>
@@ -124,12 +124,12 @@ const DashboardPage: React.FC = () => {
 
             {/* Right Side - URL Shortener Form */}
             <div>
-              <div className="bg-violet-100/95 backdrop-blur-lg rounded-3xl p-10 shadow-2xl border border-violet-200/50 hover:bg-violet-200 transition-all duration-300">
+              <div className="bg-orange-100/95 backdrop-blur-lg rounded-3xl p-10 shadow-2xl border border-orange-200/50 hover:bg-orange-200 transition-all duration-300">
                 <div className="flex items-center gap-3 mb-8">
-                  <svg className="w-6 h-6 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                   </svg>
-                  <h2 className="text-2xl font-bold text-violet-900">Create Short Link</h2>
+                  <h2 className="text-2xl font-bold text-orange-900">Create Short Link</h2>
                 </div>
                 <UrlForm onSuccess={() => setRefreshTrigger(prev => prev + 1)} />
               </div>
@@ -141,8 +141,8 @@ const DashboardPage: React.FC = () => {
         <div className="max-w-6xl mx-auto">
           <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl p-6 md:p-8 shadow-2xl hover:border-white/30 transition-all duration-300">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-indigo-500/20 rounded-2xl flex items-center justify-center transition-transform duration-300 hover:-translate-y-1">
-                <svg className="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-12 h-12 bg-amber-500/20 rounded-2xl flex items-center justify-center transition-transform duration-300 hover:-translate-y-1">
+                <svg className="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
               </div>

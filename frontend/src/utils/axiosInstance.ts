@@ -1,8 +1,8 @@
-import axios, { 
-  type AxiosInstance, 
-  type AxiosResponse, 
-  type AxiosError, 
-  type InternalAxiosRequestConfig 
+import axios, {
+  type AxiosInstance,
+  type AxiosResponse,
+  type AxiosError,
+  type InternalAxiosRequestConfig
 } from "axios";
 
 /**

@@ -60,7 +60,7 @@ const UrlForm: React.FC<UrlFormProps> = ({ onSuccess }) => {
       const response = await fetch(qrUrl);
       const blob = await response.blob();
       const file = new File([blob], 'qrcode.png', { type: 'image/png' });
-      
+
       if (navigator.canShare && navigator.canShare({ files: [file] })) {
         await navigator.share({
           files: [file],
@@ -82,7 +82,7 @@ const UrlForm: React.FC<UrlFormProps> = ({ onSuccess }) => {
 
     try {
       const payload: { url: string; slug?: string; activeFrom?: string } = { url };
-      
+
       if (customSlug?.trim()) {
         payload.slug = customSlug.trim();
       }
@@ -91,8 +91,8 @@ const UrlForm: React.FC<UrlFormProps> = ({ onSuccess }) => {
       }
 
       const { data } = await axios.post<CreateUrlResponse | string>(
-        `${import.meta.env.VITE_BACKEND_URL}/api/create`, 
-        payload, 
+        `${import.meta.env.VITE_BACKEND_URL}/api/create`,
+        payload,
         { withCredentials: true }
       );
 
@@ -125,7 +125,7 @@ const UrlForm: React.FC<UrlFormProps> = ({ onSuccess }) => {
         {/* URL Input */}
         <div className="relative group">
           <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-            <svg className="w-5 h-5 text-gray-400 group-focus-within:text-violet-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 text-gray-400 group-focus-within:text-orange-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
             </svg>
           </div>
@@ -134,7 +134,7 @@ const UrlForm: React.FC<UrlFormProps> = ({ onSuccess }) => {
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             placeholder="Paste your long link here..."
-            className="w-full pl-12 pr-4 py-4 bg-white border-2 border-violet-100 rounded-2xl outline-none focus:border-violet-500 focus:ring-4 focus:ring-violet-100/50 transition-all duration-300 font-medium text-gray-700 shadow-sm"
+            className="w-full pl-12 pr-4 py-4 bg-white border-2 border-orange-100 rounded-2xl outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-100/50 transition-all duration-300 font-medium text-gray-700 shadow-sm"
             required
           />
         </div>
@@ -147,7 +147,7 @@ const UrlForm: React.FC<UrlFormProps> = ({ onSuccess }) => {
               <button
                 type="button"
                 onClick={() => setShowCustomSlug(!showCustomSlug)}
-                className="flex items-center gap-2 text-sm font-semibold text-violet-600 hover:text-violet-800 transition-colors"
+                className="flex items-center gap-2 text-sm font-semibold text-orange-600 hover:text-orange-800 transition-colors"
               >
                 <svg className={`w-4 h-4 transition-transform ${showCustomSlug ? 'rotate-90' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path d="M9 5l7 7-7 7" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
@@ -161,7 +161,7 @@ const UrlForm: React.FC<UrlFormProps> = ({ onSuccess }) => {
                     value={customSlug}
                     onChange={(e) => setCustomSlug(e.target.value)}
                     placeholder="custom-alias"
-                    className="w-full pl-4 pr-4 py-3 bg-white border-2 border-violet-100 rounded-xl outline-none focus:border-violet-500 transition-all text-sm"
+                    className="w-full pl-4 pr-4 py-3 bg-white border-2 border-orange-100 rounded-xl outline-none focus:border-orange-500 transition-all text-sm"
                   />
                 </div>
               )}
@@ -172,7 +172,7 @@ const UrlForm: React.FC<UrlFormProps> = ({ onSuccess }) => {
               <button
                 type="button"
                 onClick={() => setShowScheduleActivation(!showScheduleActivation)}
-                className="flex items-center gap-2 text-sm font-semibold text-violet-600 hover:text-violet-800 transition-colors"
+                className="flex items-center gap-2 text-sm font-semibold text-orange-600 hover:text-orange-800 transition-colors"
               >
                 <svg className={`w-4 h-4 transition-transform ${showScheduleActivation ? 'rotate-90' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path d="M9 5l7 7-7 7" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
@@ -185,7 +185,7 @@ const UrlForm: React.FC<UrlFormProps> = ({ onSuccess }) => {
                     type="datetime-local"
                     value={activeFrom}
                     onChange={(e) => setActiveFrom(e.target.value)}
-                    className="w-full px-4 py-3 bg-white border-2 border-violet-100 rounded-xl outline-none focus:border-violet-500 transition-all text-sm"
+                    className="w-full px-4 py-3 bg-white border-2 border-orange-100 rounded-xl outline-none focus:border-orange-500 transition-all text-sm"
                   />
                 </div>
               )}
@@ -197,7 +197,7 @@ const UrlForm: React.FC<UrlFormProps> = ({ onSuccess }) => {
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full py-4 bg-violet-600 hover:bg-violet-700 text-white font-bold text-lg rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-70"
+          className="w-full py-4 bg-orange-600 hover:bg-orange-700 text-white font-bold text-lg rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-70"
         >
           {isLoading ? <DotLoader size={24} color="#ffffff" /> : <span>Shorten Now</span>}
         </button>
@@ -205,11 +205,11 @@ const UrlForm: React.FC<UrlFormProps> = ({ onSuccess }) => {
         {/* Result Card */}
         {shortUrl && (
           <div className="mt-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-white border border-violet-100 rounded-2xl p-5 shadow-xl">
+            <div className="bg-white border border-orange-100 rounded-2xl p-5 shadow-xl">
               <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Your link is ready</p>
-              <div className="flex flex-col sm:flex-row items-center gap-3 bg-violet-50 rounded-xl p-2">
+              <div className="flex flex-col sm:flex-row items-center gap-3 bg-orange-50 rounded-xl p-2">
                 <div className="flex-1 w-full min-w-0 px-2 truncate">
-                  <a href={shortUrl} target="_blank" rel="noopener noreferrer" className="text-violet-700 font-bold hover:underline text-lg">
+                  <a href={shortUrl} target="_blank" rel="noopener noreferrer" className="text-orange-700 font-bold hover:underline text-lg">
                     {shortUrl}
                   </a>
                 </div>
@@ -229,15 +229,15 @@ const UrlForm: React.FC<UrlFormProps> = ({ onSuccess }) => {
                 <div className="mt-4 flex flex-col items-center animate-in fade-in">
                   <img src={qrCode} alt="QR Code" className="w-32 h-32 border p-2 bg-white rounded-lg" />
                   <div className="flex gap-2 mt-4">
-                    <button 
+                    <button
                       onClick={() => downloadQrCode(qrCode, 'linkly-qr.png')}
-                      className="text-xs font-bold text-violet-600 uppercase"
+                      className="text-xs font-bold text-orange-600 uppercase"
                     >
                       Download
                     </button>
-                    <button 
+                    <button
                       onClick={() => shareQrCode(qrCode)}
-                      className="text-xs font-bold text-violet-600 uppercase"
+                      className="text-xs font-bold text-orange-600 uppercase"
                     >
                       Share
                     </button>

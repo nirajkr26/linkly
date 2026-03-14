@@ -4,10 +4,10 @@ import { Link } from '@tanstack/react-router';
 
 const UrlsPage: React.FC = () => {
     return (
-        <div className="min-h-screen bg-linear-to-br from-indigo-950 via-purple-950 to-gray-900 relative overflow-hidden">
+        <div className="min-h-screen bg-linear-to-br from-amber-950 via-red-950 to-gray-900 relative overflow-hidden">
             {/* Background decorations */}
             <div className="absolute inset-0 opacity-20 pointer-events-none" aria-hidden="true">
-                <div className="absolute top-20 left-20 w-96 h-96 bg-violet-500 rounded-full blur-3xl animate-pulse" />
+                <div className="absolute top-20 left-20 w-96 h-96 bg-orange-500 rounded-full blur-3xl animate-pulse" />
                 <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-500 rounded-full blur-3xl animate-pulse delay-1000" />
             </div>
 
@@ -16,8 +16,8 @@ const UrlsPage: React.FC = () => {
                     <div className="mb-8 flex items-center justify-between">
                         <div className="flex items-center gap-4">
                             {/* TanStack Link with typed 'to' prop */}
-                            <Link 
-                                to="/dashboard" 
+                            <Link
+                                to="/dashboard"
                                 className="p-2 rounded-xl bg-white/10 hover:bg-white/20 transition-colors text-white"
                             >
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

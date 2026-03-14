@@ -1,6 +1,6 @@
 import { createRoute } from "@tanstack/react-router";
 import { rootRoute } from "./root.route";
-import ExpiredLinkPage from "../pages/ExpiredLinkPage";
+import expiredLinkPage from "../pages/ExpiredLinkPage";
 
 /**
  * Route for the "Link Expired" state.
@@ -10,5 +10,5 @@ import ExpiredLinkPage from "../pages/ExpiredLinkPage";
 export const expiredLinkRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/link-expired',
-  component: ExpiredLinkPage,
+  component: expiredLinkPage,
 });
