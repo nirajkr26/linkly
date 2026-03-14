@@ -49,7 +49,7 @@ const HomePage: React.FC = () => {
         payload,
         { withCredentials: true }
       );
-      console.log(data);
+      
       if (typeof data === 'string') {
         setShortUrl(data);
       } else if (data && typeof data === 'object') {
