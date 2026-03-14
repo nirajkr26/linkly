@@ -29,7 +29,7 @@ export const createShortUrlController = wrapAsync(async (req: Request, res: Resp
     } else {
         // Guest User Logic
         const shortUrl = await createShortUrlWithoutUserService(url);
-        return res.send(`${BACKEND_URL}${shortUrl}`);
+        return res.send(`${BACKEND_URL}/${shortUrl}`);
     }
 });
 
