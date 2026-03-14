@@ -4,6 +4,7 @@ import express from "express";
 import connectDB from "./src/config/mongo.config";
 import cookieParser from "cookie-parser";
 import passport from "passport";
+import "./src/config/passport.config";
 import cors from "cors";
 import AuthRoutes from "./src/routes/auth.route";
 import { errorHandler } from "./src/utils/errorHandler";
@@ -27,7 +28,7 @@ app.use(cookieParser());
 
 app.use("/api/auth", AuthRoutes);
 app.use("/api/user", UserRoutes);
-app.use("/api/create",ShortUrlRouter);
+app.use("/api/create", ShortUrlRouter);
 app.use("/api/analytics", AnalyticsRouter);
 
 // Get - redirect short url

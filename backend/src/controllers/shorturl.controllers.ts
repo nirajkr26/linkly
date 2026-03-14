@@ -23,7 +23,7 @@ export const createShortUrlController = wrapAsync(async (req: Request, res: Resp
         // Registered User Logic
         const result = await createShortUrlWithUserService(url, slug, req.user._id, activeFrom);
         return res.json({
-            shortUrl: `${BACKEND_URL}${result.shortUrl}`,
+            shortUrl: `${BACKEND_URL}/${result.shortUrl}`,
             qrCode: result.qrCode
         });
     } else {
