@@ -3,44 +3,20 @@ import { useNavigate } from '@tanstack/react-router';
 import { useDispatch } from 'react-redux';
 import { login } from '../store/slice/authSlice';
 import { DotLoader } from 'react-spinners';
-import { type AppDispatch } from '../store/store'; // Adjust path to your store file
-
-// --- Interfaces ---
-
-interface User {
-  _id: string;
-  name: string;
-  email: string;
-  avatar?: string;
-  // Add any other fields your backend returns
-}
-
-interface AuthMeResponse {
-  status: string;
-  data: {
-    user: User;
-  };
-}
+import { type AppDispatch } from '../store/store';
+import { getCurrentUser } from '../api/User.api';
 
 const GoogleCallbackPage: React.FC = () => {
   const navigate = useNavigate();
-
-  // Use the typed AppDispatch if you've defined it in your store setup
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    // This page is loaded after successful Google auth
-    // The backend sets the cookie, so we need to verify the user
     const verifyAuth = async (): Promise<void> => {
       try {
-        // Make a request to get current user info
-        const response = await fetch('http://localhost:3000/api/auth/me', {
-          credentials: 'include'
-        });
+        // Use the existing API service which uses the correct VITE_BACKEND_URL
+        const result = await getCurrentUser();
 
-        if (response.ok) {
-          const result: AuthMeResponse = await response.json();
-
+        if (result.isSuccess && result.data?.user) {
           // Dispatch the user data to Redux
           dispatch(login(result.data.user));
 
