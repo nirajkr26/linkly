@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: linkly_backend
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./backend/.env
+    restart: unless-stopped
+    # If using local MongoDB, uncomment below:
+    # depends_on:
+    #   - mongodb
+    # environment:
+    #  - MONGODB_URL=mongodb://mongodb:27017/linkly
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        # Pass the backend URL at build time so Vite can inject it
+        - VITE_BACKEND_URL=${FRONTEND_VITE_BACKEND_URL:-http://localhost:3000}
+    container_name: linkly_frontend
+    ports:
+      - "5173:80" # Mapping to 5173 on host, NGINX uses 80 inside container
+    restart: unless-stopped
+    depends_on:
+      - backend
+
+  # Optional: Local MongoDB service if you don't want to use Atlas
+  # mongodb:
+  #   image: mongo:latest
+  #   container_name: linkly_mongodb
+  #   ports:
+  #     - "27017:27017"
+  #   volumes:
+  #     - mongodb_data:/data/db
+  #   restart: unless-stopped
+
+# volumes:
+#   mongodb_data:

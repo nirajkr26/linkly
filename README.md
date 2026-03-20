@@ -73,21 +73,30 @@ The project is divided into two primary environments:
 │   │   └── validations/       # Zod schemas definitions
 │   ├── index.ts               # Entry point for backend server
 │   ├── package.json
-│   └── tsconfig.json
+│   ├── tsconfig.json
+│   ├── Dockerfile             # Backend Docker build instructions
+│   └── .dockerignore
 │
-└── frontend/                  # React SPA Client (Vite)
-    ├── public/                # Static assets
-    ├── src/
-    │   ├── api/               # Axios instances & API utility functions
-    │   ├── components/        # Reusable UI components (Buttons, Inputs, Modals)
-    │   ├── pages/             # Route-level components (Home, Dashboard, Analytics)
-    │   ├── routing/           # TanStack Router configuration (routeTree.ts)
-    │   ├── store/             # Redux configuration
-    │   └── utils/             # Client-side helper methods
-    ├── index.html             # HTML Entry point
-    ├── vite.config.ts         # Vite bundler configuration
-    ├── package.json
-    └── tsconfig.app.json
+├── frontend/                  # React SPA Client (Vite)
+│   ├── public/                # Static assets
+│   ├── src/
+│   │   ├── api/               # Axios instances & API utility functions
+│   │   ├── components/        # Reusable UI components (Buttons, Inputs, Modals)
+│   │   ├── pages/             # Route-level components (Home, Dashboard, Analytics)
+│   │   ├── routing/           # TanStack Router configuration (routeTree.ts)
+│   │   ├── store/             # Redux configuration
+│   │   └── utils/             # Client-side helper methods
+│   ├── index.html             # HTML Entry point
+│   ├── vite.config.ts         # Vite bundler configuration
+│   ├── package.json
+│   ├── tsconfig.app.json
+│   ├── Dockerfile             # Frontend Docker multi-stage build
+│   ├── nginx.conf             # Custom NGINX config for SPA routing
+│   └── .dockerignore
+│
+└── docker-compose.yml         # Container orchestration configuration
+└── LICENSE                    # License file
+└── README.md                  # Project README
 ```
 
 ---
@@ -95,7 +104,8 @@ The project is divided into two primary environments:
 ## ⚙️ Installation and Setup
 
 ### Prerequisites
-- [Bun](https://bun.sh/) (v1.0 or higher)
+- Docker & Docker Compose (Recommended)
+- [Bun](https://bun.sh/) (v1.0 or higher) - Required for local/manual setup
 - [MongoDB](https://www.mongodb.com/) (Local or Atlas URI)
 - Google OAuth Application Credentials (Client ID & Secret)
 
@@ -105,33 +115,73 @@ git clone https://github.com/nirajkr26/linkly.git
 cd linkly
 ```
 
-### 2. Backend Setup
+### 2. Configure Environment Variables
+Create a `.env` file in the `backend/` directory:
+```env
+PORT=3000
+MONGODB_URL=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+GOOGLE_CLIENT_ID=your_google_id
+GOOGLE_CLIENT_SECRET=your_google_secret
+BACKEND_URL=http://localhost:3000
+FRONTEND_URL=http://localhost:5173
+```
+
+*(Optional)* Create a `.env` file in `frontend/` if you need to override the API target:
+```env
+VITE_BACKEND_URL=http://localhost:3000
+```
+
+---
+
+### Method A: Run with Docker Compose (Recommended)
+Using Docker is the easiest way to start both the frontend and backend simultaneously.
+
+```bash
+docker-compose up -d --build
+```
+- The **frontend** (NGINX) will be available at: `http://localhost:5173`
+- The **backend API** will be available at: `http://localhost:3000`
+
+To stop the containers, use:
+```bash
+docker-compose down
+```
+
+---
+
+### Method B: Run Standalone Docker Containers
+If you wish to build and run only a single container, you can do so manually:
+
+**To run only the Backend:**
+```bash
+cd backend
+docker build -t linkly-backend .
+docker run -p 3000:3000 --env-file .env linkly-backend
+```
+
+**To run only the Frontend:**
+```bash
+cd frontend
+docker build --build-arg VITE_BACKEND_URL=http://localhost:3000 -t linkly-frontend .
+docker run -p 5173:80 linkly-frontend
+```
+
+---
+
+### Method C: Manual Local Setup
+
+#### Backend Setup
 ```bash
 cd backend
 bun install
-```
-Create a `.env` file in the `backend/` directory:
-```env
-PORT=...
-MONGO_URL=...
-JWT_SECRET=...
-GOOGLE_CLIENT_ID=...
-GOOGLE_CLIENT_SECRET=...
-BACKEND_URL=...
-FRONTEND_URL=...
-```
-Start the backend development server:
-```bash
 bun run dev
 ```
 
-### 3. Frontend Setup
+#### Frontend Setup
 ```bash
-cd ../frontend
+cd frontend
 bun install
-```
-Start the frontend development server:
-```bash
 bun run dev
 ```
 
