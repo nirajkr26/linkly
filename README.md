@@ -134,8 +134,8 @@ flowchart LR
     end
 
     MODELS --> MDB[(MongoDB)]
-    ROUTES -.OAuth 2.0.-> GOOGLE[Google OAuth]
-    SRV -.QR generation.-> QR[QRCode Utility]
+    ROUTES -.->|OAuth 2.0| GOOGLE[Google OAuth]
+    SRV -.->|QR generation| QR[QRCode Utility]
 ```
 
 ---
