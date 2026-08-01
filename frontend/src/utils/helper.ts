@@ -69,7 +69,7 @@ export const checkAuthSilent = async ({ context }: { context: RouteContext }): P
         if (response && response.data) {
             store.dispatch(login(response.data.user));
         }
-    } catch (error) {
+    } catch {
         store.dispatch(logout());
         queryClient.removeQueries({ queryKey: ["currentUser"] });
         localStorage.removeItem('authState');
