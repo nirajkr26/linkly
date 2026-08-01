@@ -56,6 +56,90 @@ Linkly is a powerful, modern, and fast link shortener service built to help user
 
 ---
 
+## 🗄️ Database Schema
+
+```mermaid
+erDiagram
+    USER ||--o{ SHORT_URL : owns
+    SHORT_URL ||--o{ CLICK : tracks
+
+    USER {
+        ObjectId _id PK
+        string name
+        string email UK
+        string password
+        string googleId UK
+        string avatar
+        enum provider "local|google"
+        date createdAt
+        date updatedAt
+    }
+
+    SHORT_URL {
+        ObjectId _id PK
+        string full_url
+        string short_url UK
+        number clicks
+        string qrCode
+        boolean qrGenerated
+        date expiresAt
+        date activeFrom
+        boolean isExpired
+        string linkPassword
+        boolean isLinkPassword
+        ObjectId user FK
+        date createdAt
+        date updatedAt
+    }
+
+    CLICK {
+        ObjectId _id PK
+        ObjectId urlId FK
+        string ip
+        enum deviceType "mobile|desktop"
+        date createdAt
+        date updatedAt
+    }
+```
+
+---
+
+## 🧩 System Architecture
+
+```mermaid
+flowchart LR
+    U[User Browser]
+    FE[Frontend SPA\nReact + Vite]
+    RT[TanStack Router]
+    ST[Redux Toolkit Store]
+    RQ[React Query]
+    API[Axios API Client]
+
+    U --> FE
+    FE --> RT
+    FE --> ST
+    FE --> RQ
+    RQ --> API
+    ST --> API
+    API -->|HTTP + Cookies| BE
+
+    subgraph BE[Backend API - Bun + Express]
+        MW[Middleware Layer\nCORS, Passport, Auth, Validate, Error Handler]
+        ROUTES[Route Layer\n/auth, /user, /create, /analytics, /:id]
+        CTRL[Controller Layer]
+        SRV[Service Layer]
+        DAO[DAO Layer]
+        MODELS[Mongoose Models\nUser, ShortUrl, Click]
+        MW --> ROUTES --> CTRL --> SRV --> DAO --> MODELS
+    end
+
+    MODELS --> MDB[(MongoDB)]
+    ROUTES -.->|OAuth 2.0| GOOGLE[Google OAuth]
+    SRV -.->|QR generation| QR[QRCode Utility]
+```
+
+---
+
 ## 📁 Project Structure
 The project is divided into two primary environments:
 ```text
@@ -241,4 +325,3 @@ Distributed under the MIT License. See `LICENSE` for more information.
 **Niraj Kumar** (nirajkr26)
 - GitHub: [github.com/nirajkr26](https://github.com/nirajkr26)
 - LinkedIn: [linkedin.com/in/nirajkr26](https://www.linkedin.com/in/nirajkr26/)
-
