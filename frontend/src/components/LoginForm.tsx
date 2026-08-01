@@ -46,7 +46,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onToggleForm }) => {
       // Type-safe navigation
       navigate({ to: '/dashboard' });
     } catch (err: any) {
-      setError(err.message || err.response?.data?.message || 'Login failed. Please try again.');
+      setError(err.data?.message || err.message || 'Login failed. Please try again.');
     } finally {
       setIsLoading(false);
     }

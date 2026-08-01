@@ -1,7 +1,7 @@
 import { redirect } from "@tanstack/react-router";
 import { QueryClient } from "@tanstack/react-query";
 import { getCurrentUser, type ApiResponse, type User } from "../api/User.api";
-import { login } from "../store/slice/authSlice";
+import { login, logout } from "../store/slice/authSlice";
 import { type AppStore } from "../store/store"; // Assuming you export the store type
 
 /**
@@ -25,14 +25,24 @@ export const checkAuth = async ({ context }: { context: RouteContext }): Promise
             queryFn: getCurrentUser,
         });
 
-        if (!response || !response.data) return false;
+        if (!response || !response.data?.user) {
+            throw redirect({
+                to: "/auth",
+                search: { mode: 'login' },
+            });
+        }
 
         // Update Redux state
         store.dispatch(login(response.data.user));
 
         // Final verification from Redux state
         const { isAuthenticated } = store.getState().auth;
-        if (!isAuthenticated) return false;
+        if (!isAuthenticated) {
+            throw redirect({
+                to: "/auth",
+                search: { mode: 'login' },
+            });
+        }
 
         return true;
     } catch (error) {
@@ -49,9 +59,8 @@ export const checkAuth = async ({ context }: { context: RouteContext }): Promise
  * Silent Auth Guard: Attempts to hydrate Redux but fails gracefully
  */
 export const checkAuthSilent = async ({ context }: { context: RouteContext }): Promise<void> => {
+    const { queryClient, store } = context;
     try {
-        const { queryClient, store } = context;
-
         const response: ApiResponse<{ user: User }> = await queryClient.ensureQueryData({
             queryKey: ["currentUser"],
             queryFn: getCurrentUser,
@@ -60,8 +69,9 @@ export const checkAuthSilent = async ({ context }: { context: RouteContext }): P
         if (response && response.data) {
             store.dispatch(login(response.data.user));
         }
-    } catch (error) {
-        // Silently fail - user is simply not logged in
-        console.log("Silent auth check: User not authenticated");
+    } catch {
+        store.dispatch(logout());
+        queryClient.removeQueries({ queryKey: ["currentUser"] });
+        localStorage.removeItem('authState');
     }
 };

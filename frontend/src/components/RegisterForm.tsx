@@ -49,7 +49,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onSuccess, onToggleForm }) 
       if (onSuccess) onSuccess(response);
       navigate({ to: '/dashboard' });
     } catch (err: any) {
-      setError(err.message || err.response?.data?.message || 'Registration failed. Please try again.');
+      setError(err.data?.message || err.message || 'Registration failed. Please try again.');
     } finally {
       setIsLoading(false);
     }
