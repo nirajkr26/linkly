@@ -9,13 +9,7 @@ interface GoogleAuthButtonProps {
 
 const GoogleAuthButton: React.FC<GoogleAuthButtonProps> = ({ text, className = "" }) => {
   const handleGoogleAuth = (): void => {
-    // Construct the backend URL safely
-    const backendUrl = import.meta.env.VITE_BACKEND_URL;
-    
-    if (!backendUrl) {
-      console.error("VITE_BACKEND_URL is not defined in environment variables.");
-      return;
-    }
+    const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
 
     // Redirect to backend Google OAuth endpoint
     window.location.href = `${backendUrl}/api/auth/google`;

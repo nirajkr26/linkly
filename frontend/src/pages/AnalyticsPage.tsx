@@ -66,9 +66,9 @@ const AnalyticsPage: React.FC = () => {
                 setData(response.data.data);
             } catch (err: any) {
                 console.error("Error fetching analytics:", err);
-                if (err.response?.status === 403) {
+                if (err.status === 403) {
                     setError("You don't have permission to view analytics for this link.");
-                } else if (err.response?.status === 404) {
+                } else if (err.status === 404) {
                     setError("Link not found.");
                 } else {
                     setError("Failed to load analytics data.");
